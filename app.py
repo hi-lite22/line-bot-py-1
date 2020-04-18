@@ -27,14 +27,11 @@ def callback():
 
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-    print("----1----")
-    print(body)
-    print("----2----")
 
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
-        abort(400)
+        abort(200)
     return 'OK'
 
 @handler.add(MessageEvent, message=TextMessage)
