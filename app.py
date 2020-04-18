@@ -9,10 +9,18 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+import logging
 import os
+import sys
 
 app = Flask(__name__)
 app.debug = False
+
+# ログを標準出力に出力する
++ app.logger.addHandler(logging.StreamHandler(sys.stdout))
++ # （レベル設定は適宜行ってください）
++ app.logger.setLevel(logging.ERROR)
+
 
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
