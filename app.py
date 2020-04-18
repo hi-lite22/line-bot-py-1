@@ -17,9 +17,9 @@ app = Flask(__name__)
 app.debug = False
 
 # ログを標準出力に出力する
-+ app.logger.addHandler(logging.StreamHandler(sys.stdout))
-+ # （レベル設定は適宜行ってください）
-+ app.logger.setLevel(logging.ERROR)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+# （レベル設定は適宜行ってください）
+app.logger.setLevel(logging.ERROR)
 
 
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
@@ -34,6 +34,9 @@ def callback():
 
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
+    print("----1----")
+    print(body)
+    print("----2----")
 
     try:
         handler.handle(body, signature)
@@ -50,9 +53,3 @@ def handle_message(event):
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
     app.run(host="0.0.0.0", port=port)
-
- body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-    print("----1----")
-    print(body)
-    print("----2----")
