@@ -42,3 +42,9 @@ def handle_message(event):
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
     app.run(host="0.0.0.0", port=port)
+
+ body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+    print("----1----")
+    print(body)
+    print("----2----")
