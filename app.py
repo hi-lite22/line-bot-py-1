@@ -20,10 +20,6 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/index", methods=['POST'])
-def index():
-    return 'OK'
-
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
@@ -39,9 +35,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.reply_token == "00000000000000000000000000000000":
-        return
-
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
