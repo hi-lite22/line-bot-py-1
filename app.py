@@ -12,6 +12,12 @@ from linebot.models import (
 
 import os
 
+import requests
+
+import pprint
+
+import pya3rt
+
 app = Flask(__name__)
 app.debug = False
 
@@ -36,9 +42,15 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+    push_text = event.message.text
+    reply_text = talkapi_response(push_text)
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply_text))
+
+def talkapi_response(text):
+    apikey = "YOUR_API_KEY"
+    client = pya3rt.TalkClient(apikey)
+    response = client.talk(text)
+    return ((response['results'])[0])['reply']
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
