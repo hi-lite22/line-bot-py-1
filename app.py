@@ -47,7 +47,7 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply_text))
 
 def talkapi_response(text):
-    apikey = "YOUR_API_KEY"
+    YOUR_API_KEY = "YOUR_API_KEY"
     client = pya3rt.TalkClient(apikey)
     response = client.talk(text)
     return ((response['results'])[0])['reply']
