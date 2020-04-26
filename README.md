@@ -17,5 +17,6 @@ Messaging APIとTalk APIを用いて会話が可能。
 
 # QRコード
 
-https://qr-official.line.me/sid/L/322rbgqk.png
+![LINEbot_QRcode](https://user-images.githubusercontent.com/61174324/80294850-2e580f80-87a8-11ea-861d-c753c1d3853c.png)
+
 
